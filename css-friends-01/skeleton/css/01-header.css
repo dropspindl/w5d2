@@ -1,0 +1,22 @@
+/* PHASE 1: Header */
+.header {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white; 
+  background: #f00;
+  display: flex; 
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.header li {
+  padding: 20px;
+  border-right: 1px white solid;
+  /* border-left: 1px white solid; */
+}
