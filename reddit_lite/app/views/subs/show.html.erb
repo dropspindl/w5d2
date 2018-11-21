@@ -1,0 +1,21 @@
+<h1> <%= @sub.title %> </h1>
+<h3>Moderated By: <%= User.find(@sub.moderator_id).username %> </h3>
+<h3>Description: <%= @sub.description %> </h3>
+
+Posts go here (eventually):
+<form class="" action="<%= new_sub_post_url(@sub) %>" method="get">
+  <input type="submit" name="" value="Make a post!">
+</form>
+
+<ul>
+<% @posts.each do |post| %>
+  <li> <a href="<%=post_url(post)%>"> <%= post.title %></a>
+    <% if post.author == current_user %>
+      <form class="" action="<%= edit_post_url(post) %>" method="get">
+        <input type="submit" name="" value="Edit post!">
+      </form>
+    <% end %>
+
+  </li>
+<% end %>
+</ul>

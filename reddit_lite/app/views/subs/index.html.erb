@@ -1,0 +1,11 @@
+<h1>All The Subs</h1>
+<form class="" action="<%= new_sub_url %>" method="get">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" name="" value="Create Sub-Reddit">
+</form>
+<ul>
+  <% @subs.each do |sub| %>
+    <li> <a href="<%= sub_url(sub) %>"> <%= sub.title %> </a>
+    </li>
+  <% end %>
+</ul>
