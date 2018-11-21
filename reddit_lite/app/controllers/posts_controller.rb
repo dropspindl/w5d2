@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
- before_action :ensure_author, only: [:edit, :update]
 
   def new
     @post = Post.new
+    @subs = Sub.all
     render :new
   end
 
@@ -20,18 +20,21 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @sub = @post.sub
   end
 
   def edit
+    @subs = Sub.all
     @post = Post.find(params[:id])
-    redirect_to post_url(@post) unless current_user == self.author
+    redirect_to post_url(@post) unless current_user == @post.author
   end
 
   def update
+
     @post = Post.find(params[:id])
-    redirect_to post_url(@post) unless current_user == self.author
-    if @post.update
-      redirect_to sub_url(@post)
+    redirect_to post_url(@post) unless current_user == @post.author
+    if @post.update(post_params)
+      redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
       render :edit
@@ -39,7 +42,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
+
   end
 
 end

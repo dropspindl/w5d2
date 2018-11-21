@@ -12,6 +12,16 @@
   <label>Content:
     <input type="text" name="post[content]" value=""></label>
 
+    <label>Cross post to:
+      <ul>
+
+
+    <% @subs.each do |sub| %>
+    <li><%=sub.title%><input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"></li>
+    <% end %>
+    </ul>
+      </label>
+
   <input type="submit" name="" value="Post your post">
 
 </form>

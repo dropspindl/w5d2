@@ -23,7 +23,7 @@ class SubsController < ApplicationController
 
   def show
     @sub = Sub.find(params[:id])
-    @posts = Post.where(sub_id: params[:id])
+    @posts = Post.where(sub_id: params[:id]) + @sub.posts
   end
 
   def edit

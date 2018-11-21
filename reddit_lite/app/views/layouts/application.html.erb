@@ -19,5 +19,7 @@
     </form>
     <% end %>
     <%= yield %>
+    <br>
+    <div style ="color:red"><%= flash[:errors].join("<br>").html_safe if flash[:errors] %></div>
   </body>
 </html>
